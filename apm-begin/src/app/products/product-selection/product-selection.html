@@ -1,7 +1,64 @@
 <div class="content">
   <div class="title">
-    {{pageTitle}}
+    {{pageTitle}} {{ quantity()}}
   </div>
 
 
+  <div class="grid">
+    <div class="row">
+      <div class="cellLeft">
+        <label for="quantity">Quantity:</label>
+      </div>
+      <div class="cellRight">
+        <input type="number" id="quantity" class="quantityInput" [(ngModel)]="quantity">
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="row">
+      <div class="cellFull">
+        <select title="Product selection" [(ngModel)]="selectedProduct">
+          <option value="undefined" selected>--Select a product--</option>
+          @for (product of products(); track product.id)
+          {
+          <option [ngValue]="product">
+            {{ product.productName }}
+          </option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cellLeft">Name:</div>
+      <div class="cellRight">
+        {{ selectedProduct()?.productName }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cellLeft">Description:</div>
+      <div class="cellRight">
+        {{ selectedProduct()?.description }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cellLeft">Price:</div>
+      <div class="cellRight">
+        {{ selectedProduct()?.price | currency:'USD':'symbol':'1.2-2' }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cellLeft"><label for="quantity">Quantity:</label></div>
+      <div class="cellRight">
+        <button class="qtyButton qtyButtonLeft" (click)="onDecrease()">-</button>
+        <input type="number" id="quantity" class="quantityInput" [(ngModel)]="quantity">
+        <button class="qtyButton qtyButtonRight" (click)="onIncrease()">+</button>
+      </div>
+    </div>
+
+   
+  </div>
 </div>
