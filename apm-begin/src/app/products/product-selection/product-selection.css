@@ -96,3 +96,9 @@ select>option {
   font-size: 18px;
   width:50px;
 }
+.error {
+  color: red;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+} 
